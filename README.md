@@ -1,3 +1,5 @@
+![Ethical Hacking — Hands-On Lab Knowledge Base](docs/banner.svg)
+
 # Ethical Hacking — Hands-On Lab Knowledge Base
 
 ![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
