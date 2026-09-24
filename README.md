@@ -24,6 +24,8 @@ Commands depend on tool versions, target configuration and lab permissions. Thes
 
 ## The map
 
+**New scenario-led series:** [From Scope to Security Evidence](series/README.md) starts with rules of engagement and includes a worked finding-to-risk example. The first lesson is a desk exercise, not a request to scan a target.
+
 <p align="center">
   <img src="docs/lifecycle.png" alt="The attack lifecycle and how the modules map to it" width="920">
 </p>
