@@ -31,7 +31,7 @@ Add one or two victims so you always have something legal to attack:
 | **Metasploitable 2/3** | Linux services, enumeration, system hacking |
 | **OWASP Juice Shop** or **DVWA** | Web app attacks, XSS, SQL injection |
 | **A Windows evaluation VM** | Windows enumeration, SMB, privilege escalation |
-| **VulnHub / TryHackHackTheBox images** | Endless extra practice boxes |
+| **VulnHub / TryHackMe / HackTheBox** images | Endless extra practice boxes |
 
 ## 4. The network — keep it isolated
 

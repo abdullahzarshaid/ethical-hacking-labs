@@ -1,84 +1,101 @@
-![Ethical Hacking — Hands-On Lab Knowledge Base](docs/banner.svg)
+<p align="center">
+  <img src="docs/banner.png" alt="Ethical Hacking — Hands-On Lab Knowledge Base" width="900">
+</p>
 
-# Ethical Hacking — Hands-On Lab Knowledge Base
+<h1 align="center">Ethical Hacking — Hands-On Lab Knowledge Base</h1>
 
-![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
-![Modules](https://img.shields.io/badge/modules-19-blue.svg)
-![Level](https://img.shields.io/badge/level-beginner%20to%20intermediate-orange.svg)
-![Focus](https://img.shields.io/badge/focus-hands--on%20labs-brightgreen.svg)
-![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
+<p align="center">
+  <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT">
+  <img src="https://img.shields.io/badge/modules-19-blue.svg" alt="19 modules">
+  <img src="https://img.shields.io/badge/level-beginner%20%E2%86%92%20intermediate-orange.svg" alt="level">
+  <img src="https://img.shields.io/badge/focus-hands--on%20labs-brightgreen.svg" alt="hands-on">
+  <img src="https://img.shields.io/badge/base-OWASP%20%C2%B7%20NIST%20800--115%20%C2%B7%20MITRE%20ATT%26CK-brightgreen.svg" alt="standards">
+</p>
 
-**New here? → Start with the [lab setup guide](LAB-SETUP.md), then work the modules in order.**
+**A complete, hands-on path through offensive security — 19 modules, each a runnable lab guide with its own command cheat-sheet.** It follows the real attack lifecycle: understand the goal → learn the commands → do the lab → capture the evidence → see how a defender stops it. Built from a university ethical-hacking course and rewritten to coach you through the work, not lecture at you.
 
-A practical, module-by-module walkthrough of offensive security, built from a university ethical-hacking
-course and organised the way you'd actually learn it: **understand the goal → pick the right tools → do the
-lab → capture the evidence.** It follows the well-known Certified Ethical Hacker (CEH) domain structure and
-maps each domain to a real lab folder with reports and screenshots.
+> **New here? → Start with the [lab setup guide](LAB-SETUP.md), build your safe lab, then work the modules in order.**
 
-> **Who this is for:** students starting out in penetration testing, people preparing for CEH, and anyone
-> who wants a clear map of *what* each attack phase is, *why* it matters, and *how* to practise it safely in
-> a home lab. It's written to coach you through the work, not to lecture at you.
-
-> ⚠️ **Ethics and scope.** Everything here is for a **controlled lab you own or are authorised to test**.
-> Never run these techniques against systems you don't have explicit written permission to test. Learning
-> to attack is how you learn to defend — keep it legal.
+> ⚠️ **Ethics and scope.** Everything here is for a **lab you own or are authorised in writing to test**. Learning to attack is how you learn to defend — keep it legal.
 
 ---
 
-## How to use this repo
+## The map
 
-1. **Start at Module 2 and go in order** — each phase builds on the last (you can't enumerate what you
-   haven't scanned).
-2. For each module, read the short **overview** (what/why), skim the **tools**, then open the group's
-   **lab report** and **screenshots** to see it done end to end.
-3. **Build a safe lab first:** a hypervisor (VMware/VirtualBox), an attacker VM (Kali or Parrot), and a
-   couple of deliberately vulnerable targets (e.g. Metasploitable, a Windows eval VM, DVWA/OWASP Juice
-   Shop) on an **isolated NAT/host-only network**. Nothing here should touch the internet or a real network.
+<p align="center">
+  <img src="docs/lifecycle.png" alt="The attack lifecycle and how the modules map to it" width="920">
+</p>
 
-## The attack lifecycle, module by module
+## What every module gives you
 
-| # | Module | What you'll learn (in one line) |
+Each module folder is a self-contained lab guide with the same shape, so you always know where to look:
+
+- **The goal** — what this phase achieves and where it fits in the lifecycle.
+- **Concepts that matter** — the ideas you actually need, tightly.
+- **A command cheat-sheet** — the real commands for that phase, grouped and commented. *This is the part you'll come back to.*
+- **Walk it in your lab** — a step-by-step run against a named safe target (Metasploitable, DVWA, Juice Shop…).
+- **What good looks like** — how you know it worked, and what to capture.
+- **Detection & defence** — the blue-team view of every attack.
+- **Common junior mistakes** — the traps, called out.
+
+## The modules
+
+**Core lifecycle — work these in order:**
+
+| # | Module | In one line |
 |---|---|---|
-| 02 | **Reconnaissance** | Gather information on a target passively and actively (OSINT, WHOIS, DNS, Google dorking) before touching it. |
-| 03 | **Scanning** | Discover live hosts, open ports and services (Nmap host discovery, port and service/version scans). |
-| 04 | **Enumeration** | Pull detailed info from services — users, shares, banners (SMB, SNMP, LDAP, NetBIOS). |
-| 05 | **Vulnerability Assessment** | Identify and rank weaknesses with scanners and manual checks; separate exposure from confirmed risk. |
-| 06 | **System Hacking** | Gain access, escalate privilege, and maintain/cover access on a host. |
-| 07 | **Malware Threats** | Understand trojans, worms, and RATs, and how to analyse and detect them safely. |
-| 08 | **Sniffing** | Capture and read network traffic; understand ARP spoofing and switch-level attacks. |
-| 09 | **Social Engineering** | The human attack surface — phishing, pretexting, and how to defend against it. |
-| 10 | **Denial of Service** | How DoS/DDoS works at the network and application layer, and how to detect it. |
-| 11 | **Session Hijacking** | Steal or fixate sessions at the network and application level; why tokens must expire. |
-| 12 | **Evading IDS, Firewalls & Honeypots** | How detection works and how attackers try to slip past it. |
-| 13 | **Hacking Web Servers** | Attack the server layer — misconfig, default creds, known-CVE exploitation. |
-| 14 | **Hacking Web Applications** | The app layer — brute force, XSS/CSRF, parameter tampering, known plugin/library flaws. |
-| 15 | **SQL Injection** | Read and manipulate a database through unsafe queries; then fix it. |
-| 16 | **Wireless Attacks** | Attack and assess Wi-Fi — encryption, capture, and rogue access points. |
-| 17 | **Mobile Security** | Android/iOS attack surface and app security basics. |
-| 18 | **IoT & OT Security** | The weak spots of connected devices and industrial systems. |
-| 19 | **Cloud Security** | Cloud misconfigurations and the shared-responsibility model. |
-| 20 | **Cryptography** | The crypto you actually need — hashing, encryption, and how it's attacked. |
+| 02 | [Reconnaissance](Module02_Reconnaissance/) | Map the target's surface from public data before you touch it. |
+| 03 | [Scanning](Module03_Scanning/) | Find live hosts, open ports, and the service versions behind them. |
+| 04 | [Enumeration](Module04_Enumeration/) | Make each service tell you its users, shares and secrets. |
+| 05 | [Vulnerability Assessment](Module05_VulnerabilityAssessment/) | Turn versions into ranked, **verified** findings — not scanner noise. |
+| 06 | [System Hacking](Module06_SystemHacking/) | Gain access, escalate privilege, evidence the impact. *(full student lab included)* |
 
-Each folder above contains a **lab report** and the **screenshots/commands** that back it up.
+**Specialised attack surfaces:**
+
+| # | Module | In one line |
+|---|---|---|
+| 13 | [Hacking Web Servers](Module13_HackingWebServers/) | Attack the server layer — version, config, exposed files. |
+| 14 | [Hacking Web Applications](Module14_HackingWebApps/) | The OWASP Top 10, hands-on. *(full student lab included)* |
+| 15 | [SQL Injection](Module15_SQLInjection/) | Read a database through unsafe queries — by hand, then automated, then fixed. |
+| 16 | [Wireless Attacks](Module16_WirelessAttacks/) | Capture and crack Wi-Fi handshakes; rogue APs and defences. |
+| 17 | [Mobile Security](Module17_MobileSecurity/) | Decompile apps, intercept their APIs, find the stored secrets. |
+| 18 | [IoT & OT Security](Module18_IoTSecurity/) | Firmware secrets, default creds, and the safety rules of industrial gear. |
+| 19 | [Cloud Security](Module19_CloudSecurity/) | Misconfigurations and identity — where real cloud breaches happen. |
+
+**Cross-cutting skills:**
+
+| # | Module | In one line |
+|---|---|---|
+| 07 | [Malware Threats](Module07_MalwareThreats/) | Analyse malicious code safely; build an IOC list. |
+| 08 | [Sniffing](Module08_Sniffing/) | Read traffic on the wire and see why a switch won't save you. |
+| 09 | [Social Engineering](Module09_SocialEngineering/) | The human attack surface — and how to run an authorised awareness test. |
+| 10 | [Denial of Service](Module10_DOSAttacks/) | How availability is attacked at every layer, and absorbed. |
+| 11 | [Session Hijacking](Module11_SessionHijacking/) | Steal or forge the token — and test whether logout really logs out. |
+| 12 | [Evading IDS, Firewalls & Honeypots](Module12_EvadingIDS/) | How detection works, how it's evaded, and how to close the gap. |
+| 20 | [Cryptography](Module20_Cryptography/) | Break how crypto is *used* — weak hashes, bad modes, misconfigured TLS. |
 
 ## A realistic learning path
 
-- **Week 1–2:** Modules 2–5 (recon → scanning → enumeration → vuln assessment) — the "find the way in" phase.
-- **Week 3–4:** Modules 6–12 (system hacking through evasion) — the "get in and stay in" phase.
-- **Week 5–6:** Modules 13–15 (web servers, web apps, SQLi) — the highest-demand skills in the field.
-- **Week 7+:** Modules 16–20 (wireless, mobile, IoT, cloud, crypto) — broaden your surface.
+- **Week 1–2:** Modules 02–05 — the "find the way in" phase (recon → scanning → enumeration → vuln assessment).
+- **Week 3–4:** Module 06 + 08, 11, 12 — access, sniffing, sessions, evasion.
+- **Week 5–6:** Modules 13–15 — web servers, web apps, SQLi (the highest-demand skills).
+- **Week 7+:** Modules 16–20 + 07, 09, 10 — wireless, mobile, IoT, cloud, crypto, malware, social, DoS.
 
-## Credits and attribution
+## Worked examples — real student labs
 
-The lab reports and screenshots in each module were produced by **students of the CY201 course**, and each
-report **credits its own group members** — that work belongs to them. The learning structure, overviews and
-this guide are original instructional material by **Abdullah Bin Zarshaid** (course instructor), shared to
-help others learn.
+Two modules include a **full class lab write-up** produced by their student groups — report, commands, and step-by-step screenshots — kept exactly as submitted, as worked examples of the phase:
 
-- **Instructional content and guides:** © Abdullah Bin Zarshaid — free to reuse for learning with attribution.
-- **Student lab reports:** remain the work of their named authors, credited in each module.
-- **Trademarks:** "CEH" and "Certified Ethical Hacker" are trademarks of EC-Council. This repository is an
-  independent educational resource organised around publicly known domain names; it does **not** reproduce
-  EC-Council courseware and is not affiliated with or endorsed by EC-Council.
+- **[Module 06 — System Hacking](Module06_SystemHacking/)** — Group 3's lab
+- **[Module 14 — Hacking Web Applications](Module14_HackingWebApps/)** — Group 8's lab
 
-If this helped you, a ⭐ helps other learners find it.
+That work belongs to its authors and is credited to them.
+
+## Credits, licensing & trademarks
+
+- **Instructional content, module guides and diagrams:** © Abdullah Bin Zarshaid — free to reuse for learning under the [MIT License](LICENSE), with attribution.
+- **Student lab reports:** remain the work of their named authors (CY201 course), credited in each module.
+- **Trademarks:** "CEH" and "Certified Ethical Hacker" are trademarks of EC-Council. This is an independent educational resource organised around publicly known domain names; it reproduces **no** EC-Council courseware and is not affiliated with or endorsed by EC-Council.
+
+---
+
+*If this helped you, a ⭐ helps other learners find it.*

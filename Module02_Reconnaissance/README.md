@@ -1,21 +1,78 @@
-# Module 02 - Reconnaissance
+# Module 02 — Reconnaissance
 
-**In one line.** Collect everything you can about a target before you touch it.
+> *Learn everything you can about a target before you send it a single packet.*
 
-**Why it matters.** Most of a real engagement is information gathering. The more you know up front, the fewer noisy attacks you need later.
+**The goal.** Build a map of the target's attack surface — domains, subdomains, hosts, people, technologies, exposed services — using public information first. Good recon decides how efficient the rest of the engagement is.
 
-**Key concepts.** Passive vs active recon, OSINT, footprinting, attack-surface mapping.
+**Where it fits.** This is the first phase. Everything downstream (scanning, enumeration, exploitation) is only as good as the surface you found here. Passive recon touches no target system; active recon starts sending light probes.
 
-**Core tools.** whois, dig/nslookup, theHarvester, Recon-ng, Google dorking, Shodan, Maltego.
+## Concepts that matter
 
-**Practise in your lab.** Map a target's domains, subdomains, emails and exposed services without sending it a single packet, then confirm with light active checks.
+- **Passive vs active.** Passive uses third-party data (DNS records, search engines, certificate logs) and is invisible to the target. Active sends traffic to the target and can be logged.
+- **Footprinting.** Turning scattered public data into a structured picture: name servers, mail servers, IP ranges, ASNs, tech stack, employees, email format.
+- **Attack surface.** Every host, subdomain, port, login page and third-party service that could be a way in.
+- **OSINT discipline.** Record the *source* of every fact so you can trust it later and hand it to a client.
 
-**Defender's view.** Minimise public exposure, monitor for OSINT leaks, and watch for recon patterns.
+## Command cheat-sheet
 
-> New here? Start with the [lab setup guide](../LAB-SETUP.md) and work the modules in order.
+```bash
+# WHOIS + DNS basics
+whois example.com                       # registrar, org, name servers, dates
+dig example.com ANY +noall +answer      # A, MX, NS, TXT in one shot
+dig +short txt example.com              # SPF/DMARC hints, verification records
+host -t mx example.com                  # mail servers
+
+# Subdomain discovery (passive)
+subfinder -d example.com -silent        # fast passive subdomain enum
+amass enum -passive -d example.com      # broader passive sources
+curl -s "https://crt.sh/?q=%25.example.com&output=json" | jq -r '.[].name_value' | sort -u   # cert transparency
+
+# People / emails / exposure
+theHarvester -d example.com -b bing,crtsh   # emails, hosts, names
+# Google dorks (run in a browser):
+#   site:example.com -www           inurl:admin           filetype:pdf site:example.com
+#   intitle:"index of" site:example.com
+
+# Live-host / tech fingerprint (light active)
+httpx -silent -title -tech-detect -status-code -l subdomains.txt
+whatweb https://example.com
+```
+
+> **Shodan / Censys** (browser or API) round this out — search an org or IP range for internet-exposed services without touching the target yourself.
+
+## Walk it in your lab
+
+Recon is best practised against a domain **you own** or an authorised training target. Then:
+
+1. Pick your own domain (or a bug-bounty scope that permits recon).
+2. Run WHOIS + `dig ANY`; write down name servers, mail servers and any TXT records.
+3. Enumerate subdomains with `subfinder` and `crt.sh`; merge and de-duplicate the list.
+4. Probe the live ones with `httpx`; note titles, technologies and status codes.
+5. Draw the surface: a simple list of `subdomain → IP → service → tech`. That table *is* your recon deliverable.
+
+## What good looks like
+
+A single, sourced inventory: hostnames, resolved IPs, open web services, detected technologies, and any interesting exposures (old subdomains, staging sites, exposed panels) — each with the tool/source that found it.
+
+## Detection & defence
+
+| Attacker signal | Defender response |
+|---|---|
+| Subdomain/cert-log mining | Minimise public DNS/cert exposure; retire stale subdomains |
+| Employee/email harvesting | Awareness training; limit what's public on the org site |
+| Tech fingerprinting | Remove version banners; standardise error pages |
+
+## Common junior mistakes
+
+- Jumping straight to active scanning and skipping the free, quiet, high-value passive phase.
+- Not recording where a "fact" came from — then trusting a stale DNS record.
+- Treating every discovered subdomain as in-scope. **Recon respects the scope, too.**
+
+## Go deeper
+
+- OWASP WSTG — [Information Gathering](https://owasp.org/www-project-web-security-testing-guide/)
+- [crt.sh](https://crt.sh) · [Shodan](https://www.shodan.io) · [amass](https://github.com/owasp-amass/amass)
 
 ---
 
-*Below: the CY201 class lab submission for this module, produced by its student authors and credited to them.*
-
-# Module02_Reconnaissance\n\n## Instructions\n\nEach group assigned this module must create a folder like this:\n\n- GroupXX/\n  - CEH_ModuleXX_Report_GroupXX.docx\n  - screenshots/\n  - commands.txt\n  - tools-used.txt\n\n📌 Deadline: 15 May 2025\n📌 Submit via Pull Request ONLY\n\nInstructor: Mr. Abdullah Bin Zarshaid\nCourse: CY201 – Spring 2025
+> New here? Start with the **[lab setup guide](../LAB-SETUP.md)** and work the modules in order.

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="0 0 1000 500" font-family="Helvetica">
+  <rect width="1000" height="500" fill="#0d1117"/>
+  <text x="40" y="52" fill="#ffffff" font-size="26" font-weight="800">The Attack Lifecycle</text>
+  <text x="40" y="78" fill="#9aa6b6" font-size="14">Each phase feeds the next — you can't enumerate what you never scanned. Modules 02–06 walk this path in order.</text>
+
+  <!-- phase pipeline -->
+  <g>
+    <!-- card template: rect + number + name + module -->
+    <!-- 1 Recon -->
+    <rect x="40"  y="110" width="140" height="92" rx="10" fill="#161b22" stroke="#2f3b5c"/>
+    <text x="56" y="136" fill="#39d353" font-size="20" font-weight="800">1</text>
+    <text x="56" y="162" fill="#e6edf3" font-size="14.5" font-weight="700">Reconnaissance</text>
+    <text x="56" y="184" fill="#7d8896" font-size="12">Map the surface · M02</text>
+
+    <!-- 2 Scanning -->
+    <rect x="200" y="110" width="140" height="92" rx="10" fill="#161b22" stroke="#2f3b5c"/>
+    <text x="216" y="136" fill="#39d353" font-size="20" font-weight="800">2</text>
+    <text x="216" y="162" fill="#e6edf3" font-size="14.5" font-weight="700">Scanning</text>
+    <text x="216" y="184" fill="#7d8896" font-size="12">Find live services · M03</text>
+
+    <!-- 3 Enumeration -->
+    <rect x="360" y="110" width="140" height="92" rx="10" fill="#161b22" stroke="#2f3b5c"/>
+    <text x="376" y="136" fill="#39d353" font-size="20" font-weight="800">3</text>
+    <text x="376" y="162" fill="#e6edf3" font-size="14.5" font-weight="700">Enumeration</text>
+    <text x="376" y="184" fill="#7d8896" font-size="12">Extract the facts · M04</text>
+
+    <!-- 4 Vuln assessment -->
+    <rect x="520" y="110" width="140" height="92" rx="10" fill="#161b22" stroke="#2f3b5c"/>
+    <text x="536" y="136" fill="#39d353" font-size="20" font-weight="800">4</text>
+    <text x="536" y="162" fill="#e6edf3" font-size="14.5" font-weight="700">Vuln Assessment</text>
+    <text x="536" y="184" fill="#7d8896" font-size="12">Rank and verify · M05</text>
+
+    <!-- 5 Exploitation -->
+    <rect x="680" y="110" width="140" height="92" rx="10" fill="#161b22" stroke="#2f3b5c"/>
+    <text x="696" y="136" fill="#39d353" font-size="20" font-weight="800">5</text>
+    <text x="696" y="162" fill="#e6edf3" font-size="14.5" font-weight="700">Exploitation</text>
+    <text x="696" y="184" fill="#7d8896" font-size="12">Gain access · M06</text>
+
+    <!-- 6 Post -->
+    <rect x="840" y="110" width="120" height="92" rx="10" fill="#161b22" stroke="#2f3b5c"/>
+    <text x="856" y="136" fill="#39d353" font-size="20" font-weight="800">6</text>
+    <text x="856" y="162" fill="#e6edf3" font-size="14.5" font-weight="700">Post-Exploit</text>
+    <text x="856" y="184" fill="#7d8896" font-size="12">Escalate · M06</text>
+  </g>
+
+  <!-- connector arrows between cards -->
+  <g fill="#39d353" stroke="#39d353" stroke-width="2">
+    <line x1="182" y1="156" x2="196" y2="156"/><path d="M194 151 L202 156 L194 161 Z" stroke="none"/>
+    <line x1="342" y1="156" x2="356" y2="156"/><path d="M354 151 L362 156 L354 161 Z" stroke="none"/>
+    <line x1="502" y1="156" x2="516" y2="156"/><path d="M514 151 L522 156 L514 161 Z" stroke="none"/>
+    <line x1="662" y1="156" x2="676" y2="156"/><path d="M674 151 L682 156 L674 161 Z" stroke="none"/>
+    <line x1="822" y1="156" x2="836" y2="156"/><path d="M834 151 L842 156 L834 161 Z" stroke="none"/>
+  </g>
+
+  <!-- specialised domains -->
+  <text x="40" y="262" fill="#ffffff" font-size="17" font-weight="700">Specialised attack surfaces</text>
+  <text x="40" y="284" fill="#9aa6b6" font-size="13">The same lifecycle, applied to each domain — with its own tools and rules.</text>
+  <g font-size="13.5" font-weight="600">
+    <rect x="40"  y="300" width="150" height="40" rx="8" fill="#1f2a44" stroke="#2f3b5c"/><text x="115" y="325" text-anchor="middle" fill="#cbd5e6">Web and API · M13–15</text>
+    <rect x="205" y="300" width="130" height="40" rx="8" fill="#1f2a44" stroke="#2f3b5c"/><text x="270" y="325" text-anchor="middle" fill="#cbd5e6">Wireless · M16</text>
+    <rect x="350" y="300" width="130" height="40" rx="8" fill="#1f2a44" stroke="#2f3b5c"/><text x="415" y="325" text-anchor="middle" fill="#cbd5e6">Mobile · M17</text>
+    <rect x="495" y="300" width="140" height="40" rx="8" fill="#1f2a44" stroke="#2f3b5c"/><text x="565" y="325" text-anchor="middle" fill="#cbd5e6">IoT and OT · M18</text>
+    <rect x="650" y="300" width="120" height="40" rx="8" fill="#1f2a44" stroke="#2f3b5c"/><text x="710" y="325" text-anchor="middle" fill="#cbd5e6">Cloud · M19</text>
+    <rect x="785" y="300" width="175" height="40" rx="8" fill="#1f2a44" stroke="#2f3b5c"/><text x="872" y="325" text-anchor="middle" fill="#cbd5e6">Social · Crypto · M09/20</text>
+  </g>
+
+  <!-- supporting phases -->
+  <text x="40" y="392" fill="#ffffff" font-size="17" font-weight="700">Cross-cutting skills</text>
+  <g font-size="13.5" font-weight="600">
+    <rect x="40"  y="408" width="185" height="40" rx="8" fill="#161b22" stroke="#3a2f2f"/><text x="132" y="433" text-anchor="middle" fill="#e0a3a0">Malware analysis · M07</text>
+    <rect x="240" y="408" width="150" height="40" rx="8" fill="#161b22" stroke="#3a2f2f"/><text x="315" y="433" text-anchor="middle" fill="#e0a3a0">Sniffing · M08</text>
+    <rect x="405" y="408" width="165" height="40" rx="8" fill="#161b22" stroke="#3a2f2f"/><text x="487" y="433" text-anchor="middle" fill="#e0a3a0">DoS · Sessions · M10/11</text>
+    <rect x="585" y="408" width="220" height="40" rx="8" fill="#161b22" stroke="#3a2f2f"/><text x="695" y="433" text-anchor="middle" fill="#e0a3a0">Evading IDS / firewalls · M12</text>
+  </g>
+
+  <!-- defender note -->
+  <rect x="40" y="464" width="920" height="2" fill="#21262d"/>
+  <text x="40" y="488" fill="#39d353" font-size="13.5" font-weight="700">Every phase has a Defender's View —</text>
+  <text x="272" y="488" fill="#9aa6b6" font-size="13.5">you learn to attack so you can detect and defend. Practise only what you're authorised to test.</text>
+</svg>

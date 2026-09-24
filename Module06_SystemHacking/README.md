@@ -1,77 +1,90 @@
-# Module 06 - System Hacking
+# Module 06 — System Hacking
 
-**In one line.** Gain access to a host, escalate privilege, and understand persistence.
+> *Gain access, prove it, escalate it, and understand how you'd be caught.*
 
-**Why it matters.** This is the classic "getting in" phase where your recon and enumeration finally pay off.
+**The goal.** Use a weakness you identified to gain a foothold on a host, then escalate from a low-privileged user to administrator/root, and understand persistence and log-clearing — so you can both demonstrate impact and defend against it.
 
-**Key concepts.** Password attacks (guessing, cracking, spraying), exploitation, Windows/Linux privilege escalation, maintaining access, covering tracks.
+**Where it fits.** This is where reconnaissance and enumeration pay off. It's also the phase with the most legal and ethical weight — only ever on a machine you own or are authorised, in writing, to test.
 
-**Core tools.** Metasploit, Hydra, John the Ripper, Hashcat, Mimikatz, LinPEAS/WinPEAS.
+## The four sub-phases
 
-**Practise in your lab.** Exploit a known-vulnerable service on Metasploitable, get a shell, then escalate to root - documenting every step.
+1. **Gaining access** — password attacks, exploiting a vulnerable service, or abusing a misconfiguration.
+2. **Privilege escalation** — from `user` to `root`/`SYSTEM` via kernel bugs, weak permissions, SUID binaries, or stored credentials.
+3. **Maintaining access** — how persistence works (so you can hunt for it).
+4. **Clearing tracks** — how logs get tampered with (so you can protect them).
 
-**Defender's view.** Patching, least privilege, EDR, credential protection, and logging.
+## Command cheat-sheet
 
-> New here? Start with the [lab setup guide](../LAB-SETUP.md) and work the modules in order.
+```bash
+# --- Password attacks ---
+hydra -L users.txt -P rockyou.txt ssh://10.10.10.5      # online brute (service)
+hydra -l admin -P rockyou.txt 10.10.10.5 http-post-form \
+  "/login:user=^USER^&pass=^PASS^:Invalid"
+john --wordlist=rockyou.txt hashes.txt                  # offline crack
+hashcat -m 1000 hashes.txt rockyou.txt                  # NTLM offline crack
+
+# --- Getting a shell (Metasploit) ---
+msfconsole -q
+#  search <service/version>  →  use <exploit>  →  set RHOSTS/LHOST  →  run
+
+# --- Linux privilege escalation (enumerate first) ---
+./linpeas.sh                          # automated privesc surface
+sudo -l                               # what can this user run as root?
+find / -perm -4000 -type f 2>/dev/null   # SUID binaries
+getcap -r / 2>/dev/null               # file capabilities
+# check GTFOBins for any binary you can abuse
+
+# --- Windows privilege escalation ---
+whoami /priv                          # token privileges (SeImpersonate...)
+.\winPEAS.exe                         # automated privesc surface
+# check LOLBAS for living-off-the-land binaries
+```
+
+## Walk it in your lab
+
+Target: **Metasploitable 2** (Linux) and/or a **Windows eval VM**.
+
+1. **Access.** Pick a vulnerable service from Module 05 and get a shell (via Metasploit or a manual exploit), or brute a weak SSH/FTP login with `hydra`.
+2. **Situational awareness.** `id` / `whoami`, OS version, running processes, network — know where you landed.
+3. **Escalate.** Run `linpeas`/`winPEAS`, then follow one concrete path (a `sudo -l` entry, a SUID binary, a writable service). Confirm with `id` / `whoami /priv`.
+4. **Understand persistence & logs** conceptually — where they live, how they're detected — without needing to deploy anything.
+5. **Capture evidence** at every step (commands + screenshots). Evidence is the point.
+
+## What good looks like
+
+A clear chain: *initial access → proof of low-priv shell → the specific escalation path → proof of root/SYSTEM*, each step backed by a command and a screenshot. Impact you can't evidence isn't impact.
+
+## Detection & defence
+
+| Attacker signal | Defender response |
+|---|---|
+| Brute-force against SSH/RDP/web | Lockouts, MFA, fail2ban, strong passwords |
+| Known-exploit payloads | Patch; EDR; least privilege |
+| SUID/sudo/token abuse | Audit SUID; tighten `sudoers`; remove dangerous privileges |
+| Log clearing | Ship logs off-host (SIEM); make them tamper-evident |
+
+## Common junior mistakes
+
+- Firing exploits before enumerating — you skip the easy win and make noise.
+- Getting a shell and stopping, without escalating or evidencing impact.
+- Not stabilising the shell (upgrade to a PTY) and losing it on the first mistake.
 
 ---
 
-*Below: the CY201 class lab submission for this module, produced by its student authors and credited to them.*
+## Worked example — student lab (CY201)
 
-CEH Module 6 – System Hacking (Lab Report)
-🧠 Overview
-This repository contains the lab report for Module 6: System Hacking conducted by Group 3 for the course CY201 – Cyber Security Principles and Concepts at [Your Institution].
+This module includes a full class lab write-up by its student authors, kept as submitted:
 
-The objective of this module is to explore and understand how attackers gain unauthorized access to computer systems using real-world tools and techniques in a controlled lab environment. The exercises cover password cracking, privilege escalation, maintaining access, hiding activity, and clearing traces.
-👥 Team Members
-• Ali Muntazir – 2023098
-• Muhammad Ismail – 2023453
-• Abdullah Ahtasham – 2023033
-Instructor: Mr. Abdullah Bin Zarshaid
-Submission Date: May 14, 2025
-🛠️ Environment Setup
-Operating Systems:
-- Windows 11
-- Parrot OS
-- Windows Server 2022
+- **[CEH_Module6_LabReport_Group3.docx](CEH_Module6_LabReport_Group3.docx)** — the group's report
+- **[Commands Used.txt](Commands%20Used.txt)** · **[Tools Used.txt](Tools%20Used.txt)**
+- Step screenshots under `Lab1/`, `Lab 3/` and `Lab4/` (by task)
 
-Virtualization: VirtualBox
-Network Configuration: NAT & Host-Only Adapter
-🔍 Lab Activities Summary
-🔐 Lab 1 – Gain Access to the System
-- Task 2: Audited system passwords using L0pht Crack
-- Task 3: Identified known vulnerabilities using Exploit DB
-- Task 5: Performed remote access using Armitage and Nmap
-🧱 Lab 2 – Privilege Escalation
-⚠️ Note: This lab was skipped due to unavailability of spyware tools.
-🕵️ Lab 3 – Maintain Remote Access & Hide Activities
-- Task 3: Used NTFS Streams to hide files via Command Prompt
-- Task 5: Applied OpenStego for image steganography
-🧹 Lab 4 – Clear Logs & Hide Evidence
-- Task 1: Used AuditPol to view and clear audit logs
-- Task 4: Hid artifacts using CMD on Windows and MATE Terminal on Linux
-🧪 Tools Used
-- L0pht Crack – Password auditing tool
-- Armitage – Pen testing attack manager
-- Nmap – Network scanning and vulnerability assessment
-- OpenStego – Steganography tool
-- Command Prompt / MATE Terminal – Command-line interfaces
-💻 Notable Commands
-cd C:\magic                         # Access folder
-notepad read.txt                   # Create a text file
-type calc.exe > read.txt:calc.exe # Hide EXE inside text file (NTFS stream)
-mklink backdoor.exe read.txt:calc.exe # Link EXE to backdoor
-⚠️ Issues Faced
-- VM Connectivity: Resolved by using NAT + Host-Only network adapters
-- John the Ripper Tool Access: Unable to run it on Ubuntu or Parrot OS despite download
-🎓 Learning Outcomes
-• Gained hands-on experience with real-world hacking tools and techniques
-• Learned how to detect and exploit vulnerabilities in systems and websites
-• Understood the importance of hiding artifacts and clearing audit logs for stealth
-• Developed awareness of how attackers maintain access and evade detection
+*This work was produced by its student group and remains theirs, credited to them. It's here as a worked example of the phase above.*
 
-This knowledge enhances our ability to defend against cyberattacks by understanding how they work from the attacker’s perspective.
-📁 Contents
-- CEH_Module6_LabReport_Group3.docx – Full lab report documentation
-📜 License
-This project is for educational purposes only. Use responsibly and ethically.
+## Go deeper
+
+- [GTFOBins](https://gtfobins.github.io) · [LOLBAS](https://lolbas-project.github.io) · [HackTricks — privesc](https://book.hacktricks.xyz)
+
+---
+
+> New here? Start with the **[lab setup guide](../LAB-SETUP.md)** and work the modules in order.
