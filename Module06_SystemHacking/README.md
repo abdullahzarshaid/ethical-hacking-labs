@@ -1,3 +1,23 @@
+# Module 06 - System Hacking
+
+**In one line.** Gain access to a host, escalate privilege, and understand persistence.
+
+**Why it matters.** This is the classic "getting in" phase where your recon and enumeration finally pay off.
+
+**Key concepts.** Password attacks (guessing, cracking, spraying), exploitation, Windows/Linux privilege escalation, maintaining access, covering tracks.
+
+**Core tools.** Metasploit, Hydra, John the Ripper, Hashcat, Mimikatz, LinPEAS/WinPEAS.
+
+**Practise in your lab.** Exploit a known-vulnerable service on Metasploitable, get a shell, then escalate to root - documenting every step.
+
+**Defender's view.** Patching, least privilege, EDR, credential protection, and logging.
+
+> New here? Start with the [lab setup guide](../LAB-SETUP.md) and work the modules in order.
+
+---
+
+*Below: the CY201 class lab submission for this module, produced by its student authors and credited to them.*
+
 CEH Module 6 – System Hacking (Lab Report)
 🧠 Overview
 This repository contains the lab report for Module 6: System Hacking conducted by Group 3 for the course CY201 – Cyber Security Principles and Concepts at [Your Institution].

@@ -1,5 +1,13 @@
 # Ethical Hacking — Hands-On Lab Knowledge Base
 
+![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)
+![Modules](https://img.shields.io/badge/modules-19-blue.svg)
+![Level](https://img.shields.io/badge/level-beginner%20to%20intermediate-orange.svg)
+![Focus](https://img.shields.io/badge/focus-hands--on%20labs-brightgreen.svg)
+![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
+
+**New here? → Start with the [lab setup guide](LAB-SETUP.md), then work the modules in order.**
+
 A practical, module-by-module walkthrough of offensive security, built from a university ethical-hacking
 course and organised the way you'd actually learn it: **understand the goal → pick the right tools → do the
 lab → capture the evidence.** It follows the well-known Certified Ethical Hacker (CEH) domain structure and
