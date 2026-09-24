@@ -12,7 +12,9 @@
   <img src="https://img.shields.io/badge/base-OWASP%20%C2%B7%20NIST%20800--115%20%C2%B7%20MITRE%20ATT%26CK-brightgreen.svg" alt="standards">
 </p>
 
-**A complete, hands-on path through offensive security — 19 modules, each a runnable lab guide with its own command cheat-sheet.** It follows the real attack lifecycle: understand the goal → learn the commands → do the lab → capture the evidence → see how a defender stops it. Built from a university ethical-hacking course and rewritten to coach you through the work, not lecture at you.
+**19 practical topic guides for learning offensive security and its defensive controls.** Follow the workflow: understand the goal → review the commands → practise in an isolated lab → capture evidence → assess the defence. Built from a university ethical-hacking course, with credited student examples.
+
+Commands depend on tool versions, target configuration and lab permissions. These guides are not a claim that every exercise has been reproduced on every current platform. Start with the isolation checks below; never substitute a public target for a missing lab.
 
 > **New here? → Start with the [lab setup guide](LAB-SETUP.md), build your safe lab, then work the modules in order.**
 

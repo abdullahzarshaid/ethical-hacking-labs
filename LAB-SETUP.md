@@ -35,14 +35,19 @@ Add one or two victims so you always have something legal to attack:
 
 ## 4. The network — keep it isolated
 
-Set **every VM's network adapter** to **Host-Only** or an **internal NAT network**, not Bridged. This
-keeps your lab traffic off your real LAN and off the internet.
+Use a dedicated **Internal Network** in VirtualBox (or equivalent VM-only network). Connect attacker
+and targets to the same named network. Do not attach NAT, bridged or second internet-connected
+interfaces during exercises. **NAT normally permits outbound internet access; it is not isolation.**
+Host-only networking exposes the host to guests; use it only when that access is intentional and
+restricted. Disable routing/connection sharing and never forward ports to vulnerable targets.
 
 - Confirm your attacker and targets can ping each other.
-- Confirm the lab **cannot** reach the internet from the target side.
+- Inspect adapters and routing tables; targets should have no external default route.
+- Verify external traffic cannot leave the lab. A failed ping alone does not prove isolation.
+- Install updates during a separate maintenance phase, then remove external connectivity before labs.
 
-A common layout is a single `10.10.10.0/24` or `192.168.56.0/24` host-only network with the attacker and
-targets on it.
+A simple layout is a VM-only `10.10.10.0/24` network with static addresses and no gateway or external
+DNS server. Check that it does not overlap networks otherwise routed by your machine.
 
 ## 5. Snapshot before you break things
 
