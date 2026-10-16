@@ -1,17 +1,17 @@
-# Module 06 — System Hacking
+# Module 06: System Hacking
 
 > *Gain access, prove it, escalate it, and understand how you'd be caught.*
 
-**The goal.** Use a weakness you identified to gain a foothold on a host, then escalate from a low-privileged user to administrator/root, and understand persistence and log-clearing — so you can both demonstrate impact and defend against it.
+**The goal.** Use a weakness you identified to gain a foothold on a host, then escalate from a low-privileged user to administrator/root, and understand persistence and log-clearing, so you can both demonstrate impact and defend against it.
 
-**Where it fits.** This is where reconnaissance and enumeration pay off. It's also the phase with the most legal and ethical weight — only ever on a machine you own or are authorised, in writing, to test.
+**Where it fits.** This is where reconnaissance and enumeration pay off. It's also the phase with the most legal and ethical weight, only ever on a machine you own or are authorised, in writing, to test.
 
 ## The four sub-phases
 
-1. **Gaining access** — password attacks, exploiting a vulnerable service, or abusing a misconfiguration.
-2. **Privilege escalation** — from `user` to `root`/`SYSTEM` via kernel bugs, weak permissions, SUID binaries, or stored credentials.
-3. **Maintaining access** — how persistence works (so you can hunt for it).
-4. **Clearing tracks** — how logs get tampered with (so you can protect them).
+1. **Gaining access**: password attacks, exploiting a vulnerable service, or abusing a misconfiguration.
+2. **Privilege escalation**: from `user` to `root`/`SYSTEM` via kernel bugs, weak permissions, SUID binaries, or stored credentials.
+3. **Maintaining access**: how persistence works (so you can hunt for it).
+4. **Clearing tracks**: how logs get tampered with (so you can protect them).
 
 ## Command cheat-sheet
 
@@ -45,9 +45,9 @@ whoami /priv                          # token privileges (SeImpersonate...)
 Target: **Metasploitable 2** (Linux) and/or a **Windows eval VM**.
 
 1. **Access.** Pick a vulnerable service from Module 05 and get a shell (via Metasploit or a manual exploit), or brute a weak SSH/FTP login with `hydra`.
-2. **Situational awareness.** `id` / `whoami`, OS version, running processes, network — know where you landed.
+2. **Situational awareness.** `id` / `whoami`, OS version, running processes, network: know where you landed.
 3. **Escalate.** Run `linpeas`/`winPEAS`, then follow one concrete path (a `sudo -l` entry, a SUID binary, a writable service). Confirm with `id` / `whoami /priv`.
-4. **Understand persistence & logs** conceptually — where they live, how they're detected — without needing to deploy anything.
+4. **Understand persistence & logs** conceptually: where they live, how they're detected: without needing to deploy anything.
 5. **Capture evidence** at every step (commands + screenshots). Evidence is the point.
 
 ## What good looks like
@@ -65,17 +65,17 @@ A clear chain: *initial access → proof of low-priv shell → the specific esca
 
 ## Common junior mistakes
 
-- Firing exploits before enumerating — you skip the easy win and make noise.
+- Firing exploits before enumerating: you skip the easy win and make noise.
 - Getting a shell and stopping, without escalating or evidencing impact.
 - Not stabilising the shell (upgrade to a PTY) and losing it on the first mistake.
 
 ---
 
-## Worked example — student lab (CY201)
+## Worked example: student lab (CY201)
 
 This module includes a full class lab write-up by its student authors, kept as submitted:
 
-- **[CEH_Module6_LabReport_Group3.docx](CEH_Module6_LabReport_Group3.docx)** — the group's report
+- **[CEH_Module6_LabReport_Group3.docx](CEH_Module6_LabReport_Group3.docx)**: the group's report
 - **[Commands Used.txt](Commands%20Used.txt)** · **[Tools Used.txt](Tools%20Used.txt)**
 - Step screenshots under `Lab1/`, `Lab 3/` and `Lab4/` (by task)
 
@@ -83,7 +83,7 @@ This module includes a full class lab write-up by its student authors, kept as s
 
 ## Go deeper
 
-- [GTFOBins](https://gtfobins.github.io) · [LOLBAS](https://lolbas-project.github.io) · [HackTricks — privesc](https://book.hacktricks.xyz)
+- [GTFOBins](https://gtfobins.github.io) · [LOLBAS](https://lolbas-project.github.io) · [HackTricks: privesc](https://book.hacktricks.xyz)
 
 ---
 

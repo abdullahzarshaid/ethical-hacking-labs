@@ -4,14 +4,14 @@ An original, scenario-led series by Abdullah Bin Zarshaid. Start with permission
 
 ## Start here
 
-1. [Lesson 01: Rules of engagement and scope](01-scope-and-roe.md) — a desk exercise; no scanning.
-2. [Worked GRC example: finding to risk decision](grc-worked-example.md) — a fictional record, not a compliance certificate.
-3. [EvidenceGate demonstration](https://github.com/abdullahzarshaid/evidencegate/tree/main/examples) — see evidence-presence checks.
-4. [PostureKit demonstration](https://github.com/abdullahzarshaid/posturekit/tree/main/examples) — understand Pass, Fail and Unknown.
+1. [Lesson 01: Rules of engagement and scope](01-scope-and-roe.md): a desk exercise; no scanning.
+2. [Worked GRC example: finding to risk decision](grc-worked-example.md): a fictional record, not a compliance certificate.
+3. [EvidenceGate demonstration](https://github.com/abdullahzarshaid/evidencegate/tree/main/examples): see evidence-presence checks.
+4. [PostureKit demonstration](https://github.com/abdullahzarshaid/posturekit/tree/main/examples): understand Pass, Fail and Unknown.
 
 ## Planned learning sequence
 
-Only the two documents linked above are released in this series. The following are planned topics, not completed lessons or promises of a fixed publication date:
+Only the two documents linked above are released here. The remaining stages are being written as a separate, complete Web and API penetration testing manual (lab targets only) and will be linked from this page when it is published. The table shows the intended sequence, not completed lessons:
 
 | Stage | Topic | Learner output |
 |---|---|---|

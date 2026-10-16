@@ -1,15 +1,15 @@
-# Module 20 — Cryptography
+# Module 20: Cryptography
 
-> *You won't break modern crypto — you'll break how people use it. That's where the bugs are.*
+> *You won't break modern crypto, you'll break how people use it. That's where the bugs are.*
 
-**The goal.** Understand the crypto you actually meet on engagements — hashing, symmetric/asymmetric encryption, TLS, digital signatures — and learn to spot and exploit *implementation* weaknesses: weak hashes, bad modes, hardcoded keys, and misconfigured TLS.
+**The goal.** Understand the crypto you actually meet on engagements, hashing, symmetric/asymmetric encryption, TLS, digital signatures, and learn to spot and exploit *implementation* weaknesses: weak hashes, bad modes, hardcoded keys, and misconfigured TLS.
 
-**Where it fits.** Crypto underpins every other module — password hashes (Module 06), TLS (Modules 08/13), tokens (Module 11), stored secrets (Modules 17–19). This module ties those threads together.
+**Where it fits.** Crypto underpins every other module, password hashes (Module 06), TLS (Modules 08/13), tokens (Module 11), stored secrets (Modules 17-19). This module ties those threads together.
 
 ## Concepts that matter
 
 - **Hashing ≠ encryption.** Hashes are one-way (integrity, password storage); encryption is reversible (confidentiality). Confusing them is a common flaw.
-- **Password storage done right.** Slow, salted KDFs — **bcrypt, scrypt, Argon2** — not MD5/SHA-1. Fast hashes = fast cracking.
+- **Password storage done right.** Slow, salted KDFs: **bcrypt, scrypt, Argon2**: not MD5/SHA-1. Fast hashes = fast cracking.
 - **Symmetric vs asymmetric.** AES (shared key, fast) vs RSA/ECC (key pair, used for exchange/signatures). TLS uses both.
 - **Where implementations fail.** ECB mode (patterns leak), hardcoded/reused keys, weak randomness, no integrity (padding-oracle), downgrade/weak-cipher TLS, expired/self-signed certs in production.
 
@@ -24,7 +24,7 @@ hashcat -m 0 hashes.txt rockyou.txt         # MD5   (-m 100 SHA1, -m 1800 sha512
 
 # --- Encoding is not encryption (recognise it) ---
 echo "aGVsbG8=" | base64 -d                 # base64 decode
-# CyberChef (browser) — the swiss-army knife for encoding/crypto ops
+# CyberChef (browser): the swiss-army knife for encoding/crypto ops
 
 # --- TLS / certificate assessment ---
 testssl.sh https://TARGET                   # protocols, ciphers, cert, known flaws
@@ -37,14 +37,14 @@ openssl enc -aes-256-cbc -salt -in file -out file.enc     # note: needs integrit
 
 ## Walk it in your lab
 
-1. **Hash cracking:** create MD5 vs bcrypt hashes of the same password; crack both with `hashcat` and *time* them — feel why slow KDFs matter.
-2. **ECB weakness:** encrypt a simple bitmap in AES-ECB and view it — the image is still visible. That's why mode choice matters.
+1. **Hash cracking:** create MD5 vs bcrypt hashes of the same password; crack both with `hashcat` and *time* them: feel why slow KDFs matter.
+2. **ECB weakness:** encrypt a simple bitmap in AES-ECB and view it: the image is still visible. That's why mode choice matters.
 3. **TLS audit:** run `testssl.sh` against a lab server; identify weak protocols/ciphers and fix the config.
 4. **Encoding vs encryption:** decode base64/hex in CyberChef and internalise that encoding provides *no* confidentiality.
 
 ## What good looks like
 
-Findings that name the *implementation* flaw precisely: "passwords stored as unsalted MD5," "AES-ECB reveals structure," "TLS 1.0 + RC4 enabled," "hardcoded AES key in the binary" — each with the correct modern fix.
+Findings that name the *implementation* flaw precisely: "passwords stored as unsalted MD5," "AES-ECB reveals structure," "TLS 1.0 + RC4 enabled," "hardcoded AES key in the binary", each with the correct modern fix.
 
 ## Detection & defence
 
@@ -64,7 +64,7 @@ Findings that name the *implementation* flaw precisely: "passwords stored as uns
 
 ## Go deeper
 
-- OWASP — [Cryptographic Storage](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html) & [TLS](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html) cheat sheets · [CyberChef](https://gchq.github.io/CyberChef/) · [testssl.sh](https://testssl.sh)
+- OWASP: [Cryptographic Storage](https://cheatsheetseries.owasp.org/cheatsheets/Cryptographic_Storage_Cheat_Sheet.html) & [TLS](https://cheatsheetseries.owasp.org/cheatsheets/Transport_Layer_Protection_Cheat_Sheet.html) cheat sheets · [CyberChef](https://gchq.github.io/CyberChef/) · [testssl.sh](https://testssl.sh)
 
 ---
 

@@ -1,8 +1,8 @@
-# Module 14 — Hacking Web Applications
+# Module 14: Hacking Web Applications
 
 > *The app's own logic is the biggest attack surface most organisations have. This is where the OWASP Top 10 lives.*
 
-**The goal.** Test the application layer — authentication, access control, input handling, business logic — using the OWASP Testing Guide as your map. This is the highest-demand skill set in the field.
+**The goal.** Test the application layer, authentication, access control, input handling, business logic, using the OWASP Testing Guide as your map. This is the highest-demand skill set in the field.
 
 **Where it fits.** Module 13 covered the server; this covers the code running on it. SQL injection (Module 15) is one class of web-app flaw important enough to get its own module.
 
@@ -25,7 +25,7 @@
 
 ```text
 # --- The core toolkit ---
-Burp Suite      # intercepting proxy — the center of all web testing
+Burp Suite      # intercepting proxy, the center of all web testing
   Proxy         intercept & modify requests/responses
   Repeater      hand-craft and replay single requests
   Intruder      fuzz a parameter across a payload set
@@ -45,7 +45,7 @@ Path     ../../../../etc/passwd
 
 # --- Automated crawl/scan (then verify by hand) ---
 nikto -h http://TARGET
-# Burp active scan (Pro) — always confirm findings manually
+# Burp active scan (Pro): always confirm findings manually
 ```
 
 ## Walk it in your lab
@@ -56,7 +56,7 @@ Target: **OWASP Juice Shop** (modern) and **DVWA** (classic).
 2. Work the Top 10 in order. Start with **Broken Access Control**: change an `id` and see if you read another user's data (IDOR).
 3. Test **XSS**: inject a payload into each input and see where it reflects/stores unescaped.
 4. Test **auth**: weak password policy? account lockout? does logout kill the session (link to Module 11)?
-5. For each confirmed issue, capture the request/response in Burp — that's your proof.
+5. For each confirmed issue, capture the request/response in Burp: that's your proof.
 
 ## What good looks like
 
@@ -76,15 +76,15 @@ Per-finding: the category, the exact request that triggers it, the response prov
 
 - Running an automated scan and reporting its output without manual confirmation.
 - Testing only reflected XSS and missing stored/DOM variants.
-- Ignoring access control because it's "boring" — it's #1 for a reason.
+- Ignoring access control because it's "boring": it's #1 for a reason.
 
 ---
 
-## Worked example — student lab (CY201)
+## Worked example: student lab (CY201)
 
 This module includes a full class lab write-up by its student authors, kept as submitted:
 
-- **[Module14_Group_8.docx](Module14_Group_8.docx)** — the group's report
+- **[Module14_Group_8.docx](Module14_Group_8.docx)**: the group's report
 - **[commands.txt](commands.txt)** · **[tools.txt](tools.txt)**
 - Step screenshots under **[`cyber ss/`](cyber%20ss)** (by task)
 

@@ -1,8 +1,8 @@
-# Module 02 — Reconnaissance
+# Module 02: Reconnaissance
 
 > *Learn everything you can about a target before you send it a single packet.*
 
-**The goal.** Build a map of the target's attack surface — domains, subdomains, hosts, people, technologies, exposed services — using public information first. Good recon decides how efficient the rest of the engagement is.
+**The goal.** Build a map of the target's attack surface, domains, subdomains, hosts, people, technologies, exposed services, using public information first. Good recon decides how efficient the rest of the engagement is.
 
 **Where it fits.** This is the first phase. Everything downstream (scanning, enumeration, exploitation) is only as good as the surface you found here. Passive recon touches no target system; active recon starts sending light probes.
 
@@ -38,7 +38,7 @@ httpx -silent -title -tech-detect -status-code -l subdomains.txt
 whatweb https://example.com
 ```
 
-> **Shodan / Censys** (browser or API) round this out — search an org or IP range for internet-exposed services without touching the target yourself.
+> **Shodan / Censys** (browser or API) round this out, search an org or IP range for internet-exposed services without touching the target yourself.
 
 ## Walk it in your lab
 
@@ -52,7 +52,7 @@ Recon is best practised against a domain **you own** or an authorised training t
 
 ## What good looks like
 
-A single, sourced inventory: hostnames, resolved IPs, open web services, detected technologies, and any interesting exposures (old subdomains, staging sites, exposed panels) — each with the tool/source that found it.
+A single, sourced inventory: hostnames, resolved IPs, open web services, detected technologies, and any interesting exposures (old subdomains, staging sites, exposed panels), each with the tool/source that found it.
 
 ## Detection & defence
 
@@ -65,12 +65,12 @@ A single, sourced inventory: hostnames, resolved IPs, open web services, detecte
 ## Common junior mistakes
 
 - Jumping straight to active scanning and skipping the free, quiet, high-value passive phase.
-- Not recording where a "fact" came from — then trusting a stale DNS record.
+- Not recording where a "fact" came from: then trusting a stale DNS record.
 - Treating every discovered subdomain as in-scope. **Recon respects the scope, too.**
 
 ## Go deeper
 
-- OWASP WSTG — [Information Gathering](https://owasp.org/www-project-web-security-testing-guide/)
+- OWASP WSTG: [Information Gathering](https://owasp.org/www-project-web-security-testing-guide/)
 - [crt.sh](https://crt.sh) · [Shodan](https://www.shodan.io) · [amass](https://github.com/owasp-amass/amass)
 
 ---

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="500" viewBox="0 0 1000 500" font-family="Helvetica">
   <rect width="1000" height="500" fill="#0d1117"/>
   <text x="40" y="52" fill="#ffffff" font-size="26" font-weight="800">The Attack Lifecycle</text>
-  <text x="40" y="78" fill="#9aa6b6" font-size="14">Each phase feeds the next — you can't enumerate what you never scanned. Modules 02–06 walk this path in order.</text>
+  <text x="40" y="78" fill="#9aa6b6" font-size="14">Each phase feeds the next, you can't enumerate what you never scanned. Modules 02-06 walk this path in order.</text>
 
   <!-- phase pipeline -->
   <g>
@@ -54,9 +54,9 @@
 
   <!-- specialised domains -->
   <text x="40" y="262" fill="#ffffff" font-size="17" font-weight="700">Specialised attack surfaces</text>
-  <text x="40" y="284" fill="#9aa6b6" font-size="13">The same lifecycle, applied to each domain — with its own tools and rules.</text>
+  <text x="40" y="284" fill="#9aa6b6" font-size="13">The same lifecycle, applied to each domain, with its own tools and rules.</text>
   <g font-size="13.5" font-weight="600">
-    <rect x="40"  y="300" width="150" height="40" rx="8" fill="#1f2a44" stroke="#2f3b5c"/><text x="115" y="325" text-anchor="middle" fill="#cbd5e6">Web and API · M13–15</text>
+    <rect x="40"  y="300" width="150" height="40" rx="8" fill="#1f2a44" stroke="#2f3b5c"/><text x="115" y="325" text-anchor="middle" fill="#cbd5e6">Web and API · M13-15</text>
     <rect x="205" y="300" width="130" height="40" rx="8" fill="#1f2a44" stroke="#2f3b5c"/><text x="270" y="325" text-anchor="middle" fill="#cbd5e6">Wireless · M16</text>
     <rect x="350" y="300" width="130" height="40" rx="8" fill="#1f2a44" stroke="#2f3b5c"/><text x="415" y="325" text-anchor="middle" fill="#cbd5e6">Mobile · M17</text>
     <rect x="495" y="300" width="140" height="40" rx="8" fill="#1f2a44" stroke="#2f3b5c"/><text x="565" y="325" text-anchor="middle" fill="#cbd5e6">IoT and OT · M18</text>
@@ -75,6 +75,6 @@
 
   <!-- defender note -->
   <rect x="40" y="464" width="920" height="2" fill="#21262d"/>
-  <text x="40" y="488" fill="#39d353" font-size="13.5" font-weight="700">Every phase has a Defender's View —</text>
+  <text x="40" y="488" fill="#39d353" font-size="13.5" font-weight="700">Every phase has a Defender's View, </text>
   <text x="272" y="488" fill="#9aa6b6" font-size="13.5">you learn to attack so you can detect and defend. Practise only what you're authorised to test.</text>
 </svg>

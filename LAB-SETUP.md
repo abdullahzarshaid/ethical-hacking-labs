@@ -10,19 +10,19 @@ the internet and from any real network. This guide gets you there in about an ho
 
 Install one virtualization tool:
 
-- **VirtualBox** (free, all platforms) — fine for everything here.
-- **VMware Workstation Player / Pro** — smoother on Windows.
+- **VirtualBox** (free, all platforms): fine for everything here.
+- **VMware Workstation Player / Pro**: smoother on Windows.
 
 ## 2. The attacker machine
 
-Download and import one attacker distribution — they come pre-loaded with the tools:
+Download and import one attacker distribution, they come pre-loaded with the tools:
 
-- **Kali Linux** — the standard. Grab the VirtualBox/VMware image from the official site and import it.
-- **Parrot Security OS** — a lighter alternative.
+- **Kali Linux**: the standard. Grab the VirtualBox/VMware image from the official site and import it.
+- **Parrot Security OS**: a lighter alternative.
 
 Give it 2 CPUs and 4 GB RAM if you can.
 
-## 3. The targets (deliberately vulnerable — by design)
+## 3. The targets (deliberately vulnerable: by design)
 
 Add one or two victims so you always have something legal to attack:
 
@@ -33,7 +33,7 @@ Add one or two victims so you always have something legal to attack:
 | **A Windows evaluation VM** | Windows enumeration, SMB, privilege escalation |
 | **VulnHub / TryHackMe / HackTheBox** images | Endless extra practice boxes |
 
-## 4. The network — keep it isolated
+## 4. The network: keep it isolated
 
 Use a dedicated **Internal Network** in VirtualBox (or equivalent VM-only network). Connect attacker
 and targets to the same named network. Do not attach NAT, bridged or second internet-connected
@@ -56,7 +56,7 @@ state (it will), you roll back in seconds instead of rebuilding.
 
 ## 6. Work the modules in order
 
-Now start at **[Module 02 — Reconnaissance](Module02_Reconnaissance/)** and move through the phases. Each
+Now start at **[Module 02, Reconnaissance](Module02_Reconnaissance/)** and move through the phases. Each
 module's overview tells you what to do; the lab reports show it done end to end.
 
 ---
@@ -64,6 +64,6 @@ module's overview tells you what to do; the lab reports show it done end to end.
 **Golden rules**
 
 1. Only touch machines in this lab or ones you are authorised in writing to test.
-2. Never point a tool at an address you did not intend — double-check the target every time.
+2. Never point a tool at an address you did not intend: double-check the target every time.
 3. Snapshot before, roll back after.
-4. Learning to attack is how you learn to defend — keep it legal, keep notes, and capture your evidence.
+4. Learning to attack is how you learn to defend: keep it legal, keep notes, and capture your evidence.

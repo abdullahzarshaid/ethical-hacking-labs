@@ -1,4 +1,4 @@
-# Module 03 — Scanning
+# Module 03: Scanning
 
 > *Find the live hosts, the open ports, and what's actually listening on them.*
 
@@ -8,8 +8,8 @@
 
 ## Concepts that matter
 
-- **Host discovery** vs **port scanning** vs **service/version detection** — three separate questions, three sets of flags.
-- **TCP handshake states.** `open`, `closed`, `filtered` (firewall dropping), `unfiltered` — the response tells you as much about the firewall as the host.
+- **Host discovery** vs **port scanning** vs **service/version detection**: three separate questions, three sets of flags.
+- **TCP handshake states.** `open`, `closed`, `filtered` (firewall dropping), `unfiltered`: the response tells you as much about the firewall as the host.
 - **Scan types.** SYN (`-sS`, fast, half-open), Connect (`-sT`, no raw-socket privilege needed), UDP (`-sU`, slow but finds DNS/SNMP/TFTP), ping sweeps.
 - **Timing & noise.** `-T4` is a sensible lab default; slower is stealthier. Aggressive scans are loud and get logged.
 
@@ -51,7 +51,7 @@ Target: **Metasploitable 2** (loaded with open services).
 
 ## What good looks like
 
-A per-host service inventory with **versions**, saved to disk (`-oA`), and a short note on the firewall behaviour you observed. Versions are gold — they map straight to Module 05 (vuln assessment).
+A per-host service inventory with **versions**, saved to disk (`-oA`), and a short note on the firewall behaviour you observed. Versions are gold, they map straight to Module 05 (vuln assessment).
 
 ## Detection & defence
 
@@ -65,7 +65,7 @@ A per-host service inventory with **versions**, saved to disk (`-oA`), and a sho
 
 - Scanning only the top 1000 ports and missing a service on a high port.
 - Forgetting UDP entirely (DNS, SNMP, TFTP, IKE all hide there).
-- Not saving output — then re-scanning a production host unnecessarily. Scan once, save with `-oA`, work from the file.
+- Not saving output: then re-scanning a production host unnecessarily. Scan once, save with `-oA`, work from the file.
 
 ## Go deeper
 

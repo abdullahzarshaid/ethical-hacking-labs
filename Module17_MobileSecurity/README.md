@@ -1,15 +1,15 @@
-# Module 17 — Mobile Security
+# Module 17: Mobile Security
 
-> *A phone is a computer, a sensor and a wallet — its app store is your attack surface.*
+> *A phone is a computer, a sensor and a wallet, its app store is your attack surface.*
 
 **The goal.** Understand the Android/iOS security models and the mobile attack surface (the app, its local storage, its network traffic, its backend API), and learn to assess an app against the OWASP Mobile Top 10.
 
-**Where it fits.** Mobile apps are thick clients over the web APIs you learned to test in Modules 13–15. Much of mobile testing is *still* API testing — plus device-specific storage and platform issues.
+**Where it fits.** Mobile apps are thick clients over the web APIs you learned to test in Modules 13-15. Much of mobile testing is *still* API testing, plus device-specific storage and platform issues.
 
 ## Concepts that matter
 
 - **The platform model.** App sandboxing, permission models, code signing, and why a *rooted/jailbroken* device is needed for deep testing.
-- **Where the bugs live.** Insecure local storage (secrets in SharedPreferences/plist/SQLite), weak transport (no TLS/no pinning), hardcoded secrets in the APK, and — most often — the **backend API**.
+- **Where the bugs live.** Insecure local storage (secrets in SharedPreferences/plist/SQLite), weak transport (no TLS/no pinning), hardcoded secrets in the APK, and: most often: the **backend API**.
 - **Static vs dynamic.** Static: decompile and read the app. Dynamic: run it and watch traffic/behaviour, often with an intercepting proxy and a hooking framework.
 - **OWASP MASVS/MASTG** is the standard methodology.
 
@@ -28,7 +28,7 @@ grep -riE "api[_-]?key|password|secret|token|http://" base.apk-decoded/
 strings base.apk | grep -iE "AKIA|firebaseio|http"
 
 # --- All-in-one static analysis ---
-# MobSF (Mobile Security Framework) — upload the APK/IPA, get a full report
+# MobSF (Mobile Security Framework): upload the APK/IPA, get a full report
 
 # --- Dynamic: intercept the API traffic (the money layer) ---
 # 1) Route the device proxy → Burp   2) install Burp CA
@@ -48,7 +48,7 @@ Target: an **intentionally vulnerable app** (e.g. DIVA, InsecureBankv2, OWASP MA
 
 ## What good looks like
 
-Findings split cleanly into *client-side* (storage, pinning, hardcoded secrets) and *server-side* (the API), each with evidence — decompiled snippet, stored-secret path, or intercepted request.
+Findings split cleanly into *client-side* (storage, pinning, hardcoded secrets) and *server-side* (the API), each with evidence, decompiled snippet, stored-secret path, or intercepted request.
 
 ## Detection & defence
 

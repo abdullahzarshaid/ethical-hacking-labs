@@ -1,8 +1,8 @@
-# Module 12 — Evading IDS, Firewalls & Honeypots
+# Module 12: Evading IDS, Firewalls & Honeypots
 
 > *Know how detection works, and you'll understand both how attackers slip past it and how to close the gaps.*
 
-**The goal.** Understand the defensive stack — firewalls, IDS/IPS, WAFs, honeypots — how each inspects traffic, the techniques used to evade them, and (the point for a defender) how to detect and harden against those techniques.
+**The goal.** Understand the defensive stack, firewalls, IDS/IPS, WAFs, honeypots, how each inspects traffic, the techniques used to evade them, and (the point for a defender) how to detect and harden against those techniques.
 
 **Where it fits.** This ties the offensive phases to the blue-team reality: in a real environment, your scans and exploits meet controls. Understanding evasion makes you a better tester *and* a better defender.
 
@@ -10,7 +10,7 @@
 
 - **The defensive layers.** Packet-filter vs stateful firewall; signature vs anomaly IDS; inline IPS (blocks) vs passive IDS (alerts); WAF (HTTP layer); honeypot (a decoy that turns your recon into their alert).
 - **Evasion families.** Fragmentation, timing/slow scans, source spoofing/decoys, payload encoding/obfuscation, protocol tunnelling.
-- **Detection is probabilistic.** Signatures catch the known; anomaly detection catches the unusual. Both have blind spots — and both generate the logs a defender lives on.
+- **Detection is probabilistic.** Signatures catch the known; anomaly detection catches the unusual. Both have blind spots: and both generate the logs a defender lives on.
 - **Honeypots invert the game.** Any interaction with a decoy is, by definition, suspicious.
 
 ## Command cheat-sheet
@@ -59,9 +59,9 @@ A comparison table: technique → did the IDS/WAF detect it? → why. The insigh
 
 ## Common junior mistakes
 
-- Believing evasion makes you invisible — it changes signatures, it doesn't erase logs.
+- Believing evasion makes you invisible: it changes signatures, it doesn't erase logs.
 - Testing evasion with no detection running, so you learn nothing about what worked.
-- Ignoring the ACK scan — it's the quiet way to map a firewall's rule set.
+- Ignoring the ACK scan: it's the quiet way to map a firewall's rule set.
 
 ## Go deeper
 
