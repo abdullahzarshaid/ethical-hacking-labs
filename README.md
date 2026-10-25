@@ -4,6 +4,8 @@
 
 <h1 align="center">Ethical Hacking: Hands-On Lab Knowledge Base</h1>
 
+<p align="center"><a href="https://abdullahzarshaid.github.io/ethical-hacking-labs/"><b>Read the labs online</b></a></p>
+
 <p align="center">
   <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="MIT">
   <img src="https://img.shields.io/badge/modules-19-blue.svg" alt="19 modules">
