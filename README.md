@@ -99,7 +99,7 @@ That work belongs to its authors and is credited to them.
 ## Credits, licensing & trademarks
 
 - **Instructional content, module guides and diagrams:** © Abdullah Bin Zarshaid: free to reuse for learning under the [MIT License](LICENSE), with attribution.
-- **Student lab reports:** remain the work of their named authors (CY201 course), credited in each module.
+- **Student lab reports:** remain the work of their named authors, credited in each module.
 - **Trademarks:** "CEH" and "Certified Ethical Hacker" are trademarks of EC-Council. This is an independent educational resource organised around publicly known domain names; it reproduces **no** EC-Council courseware and is not affiliated with or endorsed by EC-Council.
 
 ---
